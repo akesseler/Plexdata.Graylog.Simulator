@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Plexdata.Graylog.Simulator": {
+      "commandName": "Project",
+      "commandLineArgs": "--trace --debug --all --version"
+    }
+  }
+}
