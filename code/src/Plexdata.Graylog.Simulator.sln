@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plexdata.Graylog.Simulator", "Plexdata.Graylog.Simulator\Plexdata.Graylog.Simulator.csproj", "{210DF95C-E4C4-490D-AA9B-3D2E0D5ABC85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70AEDE04-A3EE-4F5B-AC6E-F44B49E9236A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		clean.cmd = clean.cmd
+		HISTORY.md = HISTORY.md
+		README.md = README.md
+		TODOs.md = TODOs.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{210DF95C-E4C4-490D-AA9B-3D2E0D5ABC85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210DF95C-E4C4-490D-AA9B-3D2E0D5ABC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210DF95C-E4C4-490D-AA9B-3D2E0D5ABC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210DF95C-E4C4-490D-AA9B-3D2E0D5ABC85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F85C4A7-1F05-49E4-B9DE-C498F88FA229}
+	EndGlobalSection
+EndGlobal
