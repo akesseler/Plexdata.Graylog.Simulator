@@ -48,4 +48,8 @@ a TCP interface (including zero termination) as well as a WEB interface (HTTP). 
     </EmbeddedResource>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="&quot;$(SolutionDir)post-build.cmd&quot; $(ConfigurationName)" />
+  </Target>
+
 </Project>
