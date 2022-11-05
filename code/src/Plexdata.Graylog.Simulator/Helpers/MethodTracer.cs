@@ -44,13 +44,8 @@ namespace Plexdata.Graylog.Simulator.Helpers
 
         #region Construction
 
-        private MethodTracer()
-            : base()
-        {
-        }
-
         private MethodTracer(Type caller, String member)
-            : this()
+            : base()
         {
             this.caller = MethodTracer.GetCaller(caller, member);
             this.stopwatch = Stopwatch.StartNew();
@@ -64,15 +59,7 @@ namespace Plexdata.Graylog.Simulator.Helpers
 
         public static MethodTracer Begin<TType>([CallerMemberName] String member = null)
         {
-#if DEBUG
-            // Using the Conditional attribute is unfortunately not
-            // possible, because it does not support return types.
             return new MethodTracer(typeof(TType), member);
-#else
-            // Usings with null objects should not crash.
-            // This might be the case in RELEASE versions.
-            return null;
-#endif
         }
 
         public void Dispose()
@@ -92,9 +79,11 @@ namespace Plexdata.Graylog.Simulator.Helpers
                 return;
             }
 
-            this.stopwatch.Stop();
-
-            this.PrintMessage(MethodTracer.outgoing, this.stopwatch.Elapsed);
+            if (this.stopwatch.IsRunning)
+            {
+                this.stopwatch.Stop();
+                this.PrintMessage(MethodTracer.outgoing, this.stopwatch.Elapsed);
+            }
         }
 
         private static String GetCaller(Type caller, String member)
