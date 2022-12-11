@@ -29,7 +29,7 @@ using System.ComponentModel;
 
 namespace Plexdata.Graylog.Simulator.Models
 {
-    [HelpLicense(Placeholders.Copyright)]
+    [HelpLicense("Graylog Simulator (Version " + Placeholders.Version + ") " + Placeholders.Copyright)]
     [HelpUtilize]
     [HelpPreface]
     [ParametersGroup]
@@ -128,14 +128,14 @@ namespace Plexdata.Graylog.Simulator.Models
         public Boolean IsVersion { get; set; } = false;
 
         [HelpSummary(
-            "This option enables the debug mode. In this mode some additional information are printed " +
-            "out during runtime.")]
+            "This option enables the debug mode. In this mode some additional information (e.g. binary " +
+            "dumps) is printed out at runtime. Default value is 'off'.")]
         [SwitchParameter(SolidLabel = "debug")]
         public Boolean IsDebug { get; set; } = false;
 
         [HelpSummary(
-            "This option enables the trace mode. In this mode some of the called methods are printed " +
-            "out during runtime.")]
+            "This option enables the trace mode. In this mode some of the called methods (including call " +
+            "duration) are printed out during runtime. Default value is 'off'.")]
         [SwitchParameter(SolidLabel = "trace")]
         public Boolean IsTrace { get; set; } = false;
 

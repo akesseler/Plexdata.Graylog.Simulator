@@ -32,6 +32,7 @@ using Plexdata.Graylog.Simulator.Interfaces;
 using Plexdata.Graylog.Simulator.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Sockets;
 using System.Reflection;
@@ -59,6 +60,9 @@ namespace Plexdata.Graylog.Simulator
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
+
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture; 
 
             Program program = new Program();
             program.Execute();

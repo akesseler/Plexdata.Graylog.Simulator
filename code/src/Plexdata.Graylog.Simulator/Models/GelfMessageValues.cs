@@ -90,8 +90,17 @@ namespace Plexdata.Graylog.Simulator.Models
             }
             else
             {
-                this.commonValues.Add(new GelfMessageValue(name, value));
+                this.commonValues.Add(new GelfMessageValue(name, value, this.TreatAsPlainValue(name)));
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private Boolean TreatAsPlainValue(String name)
+        {
+            return name == "timestamp" || name == "level";
         }
 
         #endregion

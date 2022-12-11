@@ -3,15 +3,15 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Description>This program is a (hopefully useful) simulator for a Graylog server and supports a UDP interface (including message chunking), 
-a TCP interface (including zero termination) as well as a WEB interface (HTTP). But note, HTTPS is not supported for various reasons.
-</Description>
+    <Description>This program is a (hopefully useful) simulator for a Graylog server and supports a UDP interface 
+(including zipping and message chunking), a TCP interface (including zero termination) and a WEB 
+interface (HTTP). Please note, HTTPS is not supported for various reasons.</Description>
     <Authors>plexdata.de</Authors>
     <Company>plexdata.de</Company>
     <Copyright>Copyright © 2022 - plexdata.de</Copyright>
-    <Version>1.0.0</Version>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
     <Title>Plexdata's Simulator for Graylog</Title>
     <PackageTags>graylog simulator</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -28,7 +28,7 @@ a TCP interface (including zero termination) as well as a WEB interface (HTTP). 
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Plexdata.ArgumentParser.NET" Version="1.0.7" />
     <PackageReference Include="Plexdata.BinConverter" Version="1.0.0" />
   </ItemGroup>
