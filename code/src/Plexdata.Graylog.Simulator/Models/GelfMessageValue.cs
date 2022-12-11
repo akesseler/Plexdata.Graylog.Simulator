@@ -23,14 +23,26 @@
  */
 
 using System;
+using System.Globalization;
 
 namespace Plexdata.Graylog.Simulator.Models
 {
     internal class GelfMessageValue
     {
+        #region Private Fields
+
+        private Boolean plain = false;
+
+        #endregion
+
         #region Construction
 
         public GelfMessageValue(String name, String value)
+            : this(name, value, false)
+        {
+        }
+
+        public GelfMessageValue(String name, String value, Boolean plain)
             : base()
         {
             if (String.IsNullOrWhiteSpace(name))
@@ -43,6 +55,7 @@ namespace Plexdata.Graylog.Simulator.Models
                 throw new ArgumentOutOfRangeException(nameof(value), $"Parameter \"{nameof(value)}\" cannot be null or whitespace.");
             }
 
+            this.plain = plain;
             this.Name = name;
             this.Value = value;
         }
@@ -61,7 +74,65 @@ namespace Plexdata.Graylog.Simulator.Models
 
         public override String ToString()
         {
+            if (this.plain)
+            {
+                String value = this.Value;
+
+                if (this.Name == "level")
+                {
+                    value = this.MapLevel(value);
+                }
+
+                if (this.Name == "timestamp")
+                {
+                    value = this.MapTimestamp(value);
+                }
+
+                return $"{this.Name} = {value}";
+            }
+
             return $"{this.Name} = '{this.Value}'";
+        }
+
+        #endregion
+        
+        #region Private Methods
+
+        private String MapLevel(String value)
+        {
+            switch (value)
+            {
+                case "0": return "0 (Emergency)";
+                case "1": return "1 (Alert)";
+                case "2": return "2 (Critical)";
+                case "3": return "3 (Error)";
+                case "4": return "4 (Warning)";
+                case "5": return "5 (Notice)";
+                case "6": return "6 (Informational)";
+                case "7": return "7 (Debug)";
+                default: return value;
+            }
+        }
+
+        private String MapTimestamp(String value)
+        {
+            try
+            {
+                Decimal timestamp = Decimal.Parse(value, NumberStyles.Any, NumberFormatInfo.InvariantInfo);
+
+                Decimal integral = Math.Truncate(timestamp);
+                Decimal fraction = (timestamp - integral) * 1000.0M;
+
+                Decimal milliseconds = (integral * 1000.0M) + fraction;
+
+                DateTimeOffset offset = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(milliseconds));
+
+                return $"{value} ({offset:yyyy-MM-dd HH:mm:ss.fff} UTC)";
+            }
+            catch
+            {
+                return value;
+            }
         }
 
         #endregion

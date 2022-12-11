@@ -12,12 +12,12 @@ in the project's [README.md](https://github.com/akesseler/Plexdata.Graylog.Simul
 The integrated program help can be shown by calling the executable with option `--help`. 
 
 ```
-Copyright © 2022 - plexdata.de
+Graylog Simulator (Version x.x.x.x) Copyright © yyyy - plexdata.de
 
 This program is a (hopefully useful) simulator for a Graylog server and
-supports a UDP interface (including message chunking), a TCP interface
-(including zero termination) as well as a WEB interface (HTTP). But note,
-HTTPS is not supported for various reasons.
+supports a UDP interface (including zipping and message chunking), a TCP
+interface (including zero termination) and a WEB interface (HTTP). Please
+note, HTTPS is not supported for various reasons.
 
 Usage:
 
@@ -69,12 +69,13 @@ Options:
                           start up.
 
   --debug                 This option enables the debug mode. In this mode
-                          some additional information are printed out during
-                          runtime.
+                          some additional information (e.g. binary dumps) is
+                          printed out at runtime. Default value is 'off'.
 
   --trace                 This option enables the trace mode. In this mode
-                          some of the called methods are printed out during
-                          runtime.
+                          some of the called methods (including call
+                          duration) are printed out during runtime. Default
+                          value is 'off'.
 
   --help [-h,-?]          This option just displays this help screen.
 ```

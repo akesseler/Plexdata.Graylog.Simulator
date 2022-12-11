@@ -136,7 +136,7 @@ namespace Plexdata.Graylog.Simulator.Simulators
                         {
                             Byte[] request = payload.ToArray();
                             this.Dump(request, "TCP", base.GetReadableFamily(), base.GetReadablePort());
-                            this.handler.Process(request);
+                            this.ProcessRemainingRequest(request);
                             break;
                         }
 
@@ -179,6 +179,53 @@ namespace Plexdata.Graylog.Simulator.Simulators
                 {
                     payload.Dispose();
                     payload = null;
+                }
+            }
+        }
+
+        private void ProcessRemainingRequest(Byte[] payload)
+        {
+            Int32 length = payload.Length;
+
+            if (length < 1)
+            {
+                return;
+            }
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                for (Int32 index = 0; index < length; index++)
+                {
+                    Byte current = payload[index];
+
+                    if (current == 0)
+                    {
+                        this.handler.Process(stream.ToArray());
+
+                        stream.Position = 0;
+                        stream.SetLength(0);
+
+                        continue;
+                    }
+
+                    stream.WriteByte(current);
+
+                    if (index + 1 == length)
+                    {
+                        this.handler.Process(stream.ToArray());
+
+                        stream.Position = 0;
+                        stream.SetLength(0);
+
+                        continue;
+                    }
+                }
+
+                if (stream.Position != 0)
+                {
+                    this.Print(ColorSwitch.WarningColor,
+                        $"WARNING: Final stream position of remaining request should not be non-zero.{Environment.NewLine}" +
+                        $"It means there is still something unprocessed.");
                 }
             }
         }
